@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Email View</title>
+  <link rel="stylesheet" href="styles.css">
+  <style>
+    body {
+    margin: 0;
+    padding: 0;
+    background-color: #f4f4f4;
+}
+
+.email-container {
+    width: 60%;
+    margin: 20px auto;
+    background-color: #fff;
+    padding: 20px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    border-radius: 8px;
+}
+
+.email-header h2 {
+    font-size: 18px;
+    margin-bottom: 10px;
+    color: #333;
+}
+
+.email-header p {
+    margin: 5px 0;
+    color: #666;
+}
+
+.email-body {
+    margin-top: 20px;
+}
+
+.email-body pre {
+    margin: 10px 0;
+    color: #333;
+    line-height: 1.6;
+}
+
+  </style>
+</head>
+<body>
+
+
+<div class="email-container">
+
+  <div class="email-header">
+    <h2 th:text="${email.subject}">Subject</h2>
+
+    <p>
+      <span th:text="${email.from().getPersonalName()}">Person Name</span>
+
+      &lt;<span mailto:th:text="${email.from().getEmail()}">name@outlook.com</span>&gt;
+    </p>
+    <p>
+      To: <ul>
+    <li th:each = "emailto : ${email.to()}">
+      <p th:text="${emailto}">Receiver</p>
+    </li>
+  </ul>
+
+    <br>
+      Cc:  <ul>
+    <li th:each = "emailcc : ${email.cc()}"><p th:text="${emailcc}">{}</p></li>
+  </ul>
+    </p>
+    <p th:text="${email.sentDate()}">Thu 8/8/2024 7:04 PM</p>
+  </div>
+
+  <div class="email-body">
+
+
+    <pre th:text="${message}">contenet...</pre>
+
+<!--    <p>Dear Customer,</p>-->
+
+
+<!--    <p th:text="${email.message}"> content......</p>-->
+
+<!--    <p>Warm Regards,<br>-->
+<!--      <span th:text="${email.signature}">HDFC Bank</span></p>-->
+  </div>
+
+
+</div>
+
+</body>
+</html>

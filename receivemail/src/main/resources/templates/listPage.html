@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Email List</title>
+    <link rel="stylesheet" href="ListOfEmail.css">
+</head>
+<body>
+<ul>
+
+    <li th:each="email, iterStat : ${emails}">
+        <div>
+
+            <h4 th:text="${email.from()}">From</h4>
+<!--            <p th:text="${email.subject()}">Subject</p>-->
+            <a th:href="@{/email/{index}(index=${iterStat.index})}" th:text="${email.subject()}">Subject</a>
+        </div>
+    </li>
+</ul>
+</body>
+</html>
