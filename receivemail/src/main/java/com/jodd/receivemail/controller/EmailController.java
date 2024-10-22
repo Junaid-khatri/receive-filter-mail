@@ -24,6 +24,7 @@ public class EmailController {
         filteredMails = receiveEmail.receiveMail();
         model.addAttribute("emails", filteredMails);
         model.addAttribute("index", 0);
+        
         return "listPage";
     }
     @GetMapping("/email/{id}")
